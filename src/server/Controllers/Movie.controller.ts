@@ -2,9 +2,9 @@ import * as express                                                             
 import { body, validationResult }                                                                 from 'express-validator';
 import { interfaces, controller, httpGet, request, response, httpPost, queryParam, requestParam } from 'inversify-express-utils';
 import { inject }                                                                                 from 'inversify';
-import { AppContainer }                                                                           from '../App';
-import { GenreModel }                                                                             from '../Models/Genre.model';
-import { MovieFilters }                                                                           from '../Models/Movie/Movie.filters';
+import { AppContainer } from '../App';
+import { GenreModel }   from '../Models/Genre/Genre.model';
+import { MovieFilters } from '../Models/Movie/Movie.filters';
 import { IMovie, IMovieFilters, MovieModel }                                                      from '../Models/Movie/Movie.model';
 
 const MovieValidatorMiddleware = [
@@ -65,7 +65,7 @@ export class MovieController implements interfaces.Controller {
             movies = MovieFilters.randomFilter(movies);
         }
 
-        return res.status(200).json({movies, filters});
+        return res.status(200).json(movies);
     }
 
     @httpPost('/', ...MovieValidatorMiddleware)

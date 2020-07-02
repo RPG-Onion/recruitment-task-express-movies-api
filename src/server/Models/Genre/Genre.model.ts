@@ -1,5 +1,5 @@
 import { inject, injectable } from 'inversify';
-import { Database } from '../Services/Database';
+import { Database }           from '../../Services/Database';
 
 @injectable()
 export class GenreModel {

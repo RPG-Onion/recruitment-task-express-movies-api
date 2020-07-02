@@ -1,7 +1,7 @@
 import * as express                                  from 'express';
 import { inject }                                    from 'inversify';
 import { controller, httpGet, interfaces, response } from 'inversify-express-utils';
-import { GenreModel }                                from '../Models/Genre.model';
+import { GenreModel }                                from '../Models/Genre/Genre.model';
 
 @controller('/genres')
 export class GenreController implements interfaces.Controller {

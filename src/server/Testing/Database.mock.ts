@@ -1,8 +1,9 @@
 import fs             from 'fs';
 import { injectable } from 'inversify';
+import { genreMock }  from '../Models/Genre/Genre.mock';
 import { moviesMock } from '../Models/Movie/Movie.mock';
 import { IMovie }     from '../Models/Movie/Movie.model';
-import { IDatabase }  from './Database';
+import { IDatabase }  from '../Services/Database';
 
 @injectable()
 export class DatabaseMock {
@@ -16,12 +17,7 @@ export class DatabaseMock {
     public load(): IDatabase {
         this.data = {
             movies: moviesMock,
-            genres: [
-                "Drama",
-                "Horror",
-                "Comedy",
-                "Fantasy",
-            ]
+            genres: genreMock
         };
 
         return this.data;

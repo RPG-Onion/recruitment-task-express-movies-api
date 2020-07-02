@@ -1,12 +1,12 @@
 import 'reflect-metadata'
 
 import { Container }       from 'inversify';
-import { GenreController } from './Controllers/Genre.controller';
-import { MovieController } from './Controllers/Movie.controller';
-import { GenreModel }      from './Models/Genre.model';
-import { MovieModel }      from './Models/Movie/Movie.model';
-import { Database }        from './Services/Database';
-import { DatabaseMock }    from './Services/Database.mock';
+import { GenreController } from '../Controllers/Genre.controller';
+import { MovieController } from '../Controllers/Movie.controller';
+import { GenreModel }      from '../Models/Genre/Genre.model';
+import { MovieModel }      from '../Models/Movie/Movie.model';
+import { Database }     from '../Services/Database';
+import { DatabaseMock } from './Database.mock';
 
 const createMockContainer = () => {
     let MockContainer = new Container();

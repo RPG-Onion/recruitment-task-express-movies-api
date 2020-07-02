@@ -2,11 +2,10 @@ import 'reflect-metadata';
 import * as express            from 'express';
 import { Container }           from 'inversify';
 import { createApp }           from '../App';
-import { createMockContainer } from '../container.mock';
+import { createMockContainer } from '../Testing/container.mock';
 import { IMovie }              from '../Models/Movie/Movie.model';
 import { Database }            from '../Services/Database';
 import { MovieController }     from './Movie.controller';
-import httpMock                from 'node-mocks-http';
 import request                 from 'supertest';
 
 describe('MovieController', () => {
