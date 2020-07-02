@@ -1,0 +1,31 @@
+{
+  "name": "recruitment-task-v2",
+  "version": "1.0.0",
+  "description": "recruitment task",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "serve": "npm run build && node ./dist/index"
+  },
+  "author": "Marcin 'RPG-Onion' Labryga",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.6",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.0",
+    "inversify": "^5.0.1",
+    "inversify-express-utils": "^6.3.2",
+    "reflect-metadata": "^0.1.13",
+    "typescript": "^3.9.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.3",
+    "@types/node": "^14.0.14",
+    "@types/supertest": "^2.0.10",
+    "jest": "^26.1.0",
+    "supertest": "^4.0.2",
+    "ts-jest": "^26.1.1"
+  }
+}
