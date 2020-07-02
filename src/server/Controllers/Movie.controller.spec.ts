@@ -17,18 +17,18 @@ describe('MovieController', () => {
         App = createApp(container);
     });
 
-    it('should instantate', () => {
+    it('should instantiate', () => {
         const controller = createMockContainer().get(MovieController);
         expect(controller).not.toBeNull();
     });
 
-    it(`If we dont provide genres parameter then we get a single random movie with a runtime between <duration - 10> and <duration + 10>.`, async () => {
+    it(`Should return single random movie with a runtime between given value +/- 10`, async () => {
         // - No genres provided
         // - runtime value provided
         // - returns *Single* random movie
 
         const response = await request(App)
-            .get('/movie/')
+            .get('/movie')
             .query({
                 filters: {
                     runtime: '30'
@@ -42,14 +42,14 @@ describe('MovieController', () => {
         expect(json.length).toEqual(1);
     });
 
-    it('If we send a request with genres [Comedy, Fantasy, Crime] then the top hits should be movies that have all three of them, then there should be movies that have one of [Comedy, Fantasy], [comedy, crime], [Fantasy, Crime] and then those with Comedy only, Fantasy only and Crime only.', async () => {
+    it('Should return list of movies with runtime around X with given genres (at least one), sorted by amount of matches', async () => {
         // provides genres
         // provides runtime
         // return all movies withing runtime range
         // sorted by genres match accuracy
 
         const response = await request(App)
-            .get('/movie/')
+            .get('/movie')
             .query({
                 filters: {
                     genres: [ 'Comedy', 'Fantasy' ],
@@ -79,12 +79,12 @@ describe('MovieController', () => {
 
     });
 
-    it(`If we dont provide duration parameter then we should get all of the movie with specific genres.`, async () => {
+    it(`Should return movies with specific genres (100% match)`, async () => {
         // - Provided X genres
         // - Returns all movies *with* matched specific X *genres*
 
         const response = await request(App)
-            .get('/movie/')
+            .get('/movie')
             .query({
                 filters: {
                     genres: [ 'Horror', 'Drama' ]
@@ -99,12 +99,12 @@ describe('MovieController', () => {
         expect(json.length).toEqual(2);
     });
 
-    it(`If we dont provide any parameter, then we should get a single random movie.`, async () => {
+    it(`Should return random movie`, async () => {
         // - No filters provided
         // - One random movie returned
 
         const response = await request(App)
-            .get('/movie/')
+            .get('/movie')
             .query({
                 filters: {}
             })
@@ -117,7 +117,7 @@ describe('MovieController', () => {
     });
 
     it(`Should Validate attempt to add new Movie and return errors`, async done => {
-        const errorResponse = await request(App).post('/movie/').send({});
+        const errorResponse = await request(App).post('/movie').send({});
 
         expect(errorResponse.status).toEqual(422);
         expect(Array.isArray(errorResponse.body.errors)).toBeTruthy()
@@ -128,7 +128,7 @@ describe('MovieController', () => {
     it(`Should create new Movie`, async done => {
 
         const response = await request(App)
-            .post('/movie/')
+            .post('/movie')
             .send({
                 genres: ['Drama'],
                 title: 'The Room',
